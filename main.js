@@ -8,13 +8,13 @@ function loadScript(src){
 }
 
 async function main(){
+  try{
   const term = new Terminal({ fontSize:14, cursorBlink:true, convertEol:false,
     theme:{ background:'#0b0d0c', foreground:'#d7e3d0', cursor:'#8fd18a' } });
   const fit = new FitAddon.FitAddon();
   term.loadAddon(fit); term.open($('term')); fit.fit();
   addEventListener('resize', ()=>fit.fit());
 
-  try{
     msg('تحميل المحاكي...'); await loadScript(CFG.libv86);
     // تأكد إن صورة Linux موجودة قبل ما نبدأ
     const head = await fetch(CFG.bzimage,{method:'HEAD'});
