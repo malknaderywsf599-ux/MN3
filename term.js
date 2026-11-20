@@ -115,6 +115,14 @@ async function getPy() {
   if (py) return py;
   print(C.y + 'تحميل Python لأول مرة (حوالي 10MB)...' + C.x);
   if (!window.loadPyodide) await loadScript(PYODIDE);
+  // تأكد إن ملفات بايثون الأساسية نزلت سليمة (بنتخطى الكاش التالف)
+  const base = PYODIDE.replace('pyodide.js', '');
+  for (const f of ['python_stdlib.zip', 'pyodide.asm.wasm', 'pyodide.asm.js']) {
+    const r = await fetch(base + f, { cache: 'reload' });
+    if (!r.ok) throw new Error('فشل تحميل ' + f + ' (' + r.status + ')');
+    const b = await r.arrayBuffer();
+    if (f === 'python_stdlib.zip' && b.byteLength < 1000000) throw new Error('python_stdlib.zip ناقص (' + b.byteLength + ' bytes)');
+  }
   const log = (s) => print(C.y + s + C.x);
   const oe = console.error, ow = console.warn;
   console.error = console.warn = (...a) => log(a.map(fmt).join(' ').slice(0, 300));
@@ -122,7 +130,7 @@ async function getPy() {
     py = await window.loadPyodide({ indexURL: PYODIDE.replace('pyodide.js', ''), stdout: log, stderr: log });
   } catch (e) {
     py = null;
-    throw new Error('Pyodide init: ' + String(e && e.stack || e).split('\n').slice(0, 5).join(' | '));
+    throw new Error('Pyodide init (اعمل Refresh للصفحة وجرب تاني): ' + String(e && e.stack || e).split('\n').slice(0, 5).join(' | '));
   } finally { console.error = oe; console.warn = ow; }
   return py;
 }
