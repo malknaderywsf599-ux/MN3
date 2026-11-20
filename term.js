@@ -115,7 +115,8 @@ async function getPy() {
   if (py) return py;
   print(C.y + 'تحميل Python لأول مرة (حوالي 10MB)...' + C.x);
   if (!window.loadPyodide) await loadScript(PYODIDE);
-  py = await window.loadPyodide();
+  const log = (s) => print(C.y + s + C.x);
+  py = await window.loadPyodide({ indexURL: PYODIDE.replace('pyodide.js', ''), stdout: log, stderr: log });
   return py;
 }
 async function syncToPy(dir) {
