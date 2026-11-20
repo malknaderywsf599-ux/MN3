@@ -1,18 +1,17 @@
-# WebTerm
+# WebLinux (v86)
 
-تيرمينال بيشتغل جوه المتصفح (على GitHub Pages)، مبني من الصفر بـ JavaScript.
+Linux حقيقي بيشتغل جوه المتصفح عن طريق محاكي v86.
 
-- نظام ملفات حقيقي بيتخزن في المتصفح (IndexedDB) ويفضل بعد إغلاق الصفحة
-- `git clone` من GitHub (isomorphic-git)
-- `python` و `pip install` (Pyodide)
-- `node` لتشغيل JS بسيط، و `open` لتشغيل صفحات HTML
-- `nano` محرر، `download` و `upload` و `wget` و `curl`
-- شريط مفاتيح (ESC, TAB, ^C, الأسهم) زي تيرميكس
-- دعم العربي في المخرجات (تشكيل الحروف + ترتيب من اليمين لليسار) عن طريق `arabic.js`
+## الملفات
+- `index.html` الصفحة
+- `style.css` الشكل
+- `js/config.js` روابط وإعدادات (عدّلها هنا)
+- `js/keys.js` شريط الأزرار (ESC, TAB, CTRL, أسهم...)
+- `js/main.js` تشغيل المحاكي وربطه بالتيرمينال
 
-## الرفع
-ارفع `index.html` و `term.js` و `arabic.js` و `README.md` في Repository جديد (مثلًا `web-term`) وفعّل Pages من Settings.
+## لازم تضيف صورة Linux
+1. اعمل فولدر `images/` جنب `index.html`.
+2. نزّل ملف `buildroot-bzimage.bin` (من موقع copy.sh/v86 الرسمي، قسم الصور/images) وحطه جواه.
+3. لو اسمه مختلف، غيّر `bzimage` في `js/config.js`.
 
-## حدود
-ده مش Linux حقيقي: مفيش apt ولا bash ولا Node حقيقي. الاتصال بالإنترنت محكوم بـ CORS،
-و `git clone` بيمر على بروكسي `cors.isomorphic-git.org` العام (ممكن يبطأ أو يتوقف).
+بعد كده ارفع كل حاجة على GitHub Pages وافتح الصفحة.
