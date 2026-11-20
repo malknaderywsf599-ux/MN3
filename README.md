@@ -1,15 +1,17 @@
-# AI محلي بدون API
+# WebTerm
 
-مشروع ويب بيشغّل نماذج ذكاء اصطناعي مفتوحة المصدر جوه المتصفح نفسه (wllama / llama.cpp)، وفيه راوتر بيختار النموذج المناسب تلقائيًا ويبدّل بينهم.
+تيرمينال بيشتغل جوه المتصفح (على GitHub Pages)، مبني من الصفر بـ JavaScript.
 
-## الرفع على GitHub Pages (من تليفونك)
-1. افتح github.com من المتصفح واعمل Repository جديد (Public).
-2. ارفع الملفات: `index.html` و `app.js` و `README.md` (Add file > Upload files).
-3. Settings > Pages > Source: `Deploy from a branch` > Branch: `main` / root > Save.
-4. بعد دقيقة افتح الرابط: `https://USERNAME.github.io/REPO/`
+- نظام ملفات حقيقي بيتخزن في المتصفح (IndexedDB) ويفضل بعد إغلاق الصفحة
+- `git clone` من GitHub (isomorphic-git)
+- `python` و `pip install` (Pyodide)
+- `node` لتشغيل JS بسيط، و `open` لتشغيل صفحات HTML
+- `nano` محرر، `download` و `upload` و `wget` و `curl`
+- شريط مفاتيح (ESC, TAB, ^C, الأسهم) زي تيرميكس
 
-## ملاحظات
-- أول مرة كل نموذج بينزل من Hugging Face (300MB–1.1GB) وبعدها بيتخزن في المتصفح. استخدم واي فاي.
-- نموذج واحد بس بيشتغل في المرة عشان الذاكرة (4GB RAM).
-- لو ظهر خطأ في التحميل، غيّر رقم نسخة wllama في أول `app.js`.
-- التصنيف في دالة `classify`، والنماذج وترتيب البدائل في `MODELS` و `CHAINS`، تقدر تعدلهم بسهولة.
+## الرفع
+ارفع `index.html` و `term.js` و `README.md` في Repository جديد (مثلًا `web-term`) وفعّل Pages من Settings.
+
+## حدود
+ده مش Linux حقيقي: مفيش apt ولا bash ولا Node حقيقي. الاتصال بالإنترنت محكوم بـ CORS،
+و `git clone` بيمر على بروكسي `cors.isomorphic-git.org` العام (ممكن يبطأ أو يتوقف).
