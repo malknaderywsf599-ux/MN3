@@ -8,9 +8,10 @@
 - `node` لتشغيل JS بسيط، و `open` لتشغيل صفحات HTML
 - `nano` محرر، `download` و `upload` و `wget` و `curl`
 - شريط مفاتيح (ESC, TAB, ^C, الأسهم) زي تيرميكس
+- دعم العربي في المخرجات (تشكيل الحروف + ترتيب من اليمين لليسار) عن طريق `arabic.js`
 
 ## الرفع
-ارفع `index.html` و `term.js` و `README.md` في Repository جديد (مثلًا `web-term`) وفعّل Pages من Settings.
+ارفع `index.html` و `term.js` و `arabic.js` و `README.md` في Repository جديد (مثلًا `web-term`) وفعّل Pages من Settings.
 
 ## حدود
 ده مش Linux حقيقي: مفيش apt ولا bash ولا Node حقيقي. الاتصال بالإنترنت محكوم بـ CORS،

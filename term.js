@@ -3,6 +3,7 @@ import { FitAddon } from 'https://esm.sh/@xterm/addon-fit@0.10.0';
 import LightningFS from 'https://esm.sh/@isomorphic-git/lightning-fs@4.6.0';
 import git from 'https://esm.sh/isomorphic-git@1.27.1';
 import http from 'https://esm.sh/isomorphic-git@1.27.1/http/web';
+import { arabize } from './arabic.js';
 
 const CORS_PROXY = 'https://cors.isomorphic-git.org';
 const HOME = '/home/user';
@@ -20,7 +21,7 @@ document.getElementById('term').addEventListener('click', () => term.focus());
 
 const C = { g: '\x1b[32m', b: '\x1b[34;1m', r: '\x1b[31m', y: '\x1b[33m', c: '\x1b[36m', x: '\x1b[0m' };
 const stripAnsi = (s) => s.replace(/\x1b\[[0-9;]*m/g, '');
-const print = (s = '') => term.write(String(s).replace(/\r?\n/g, '\r\n') + '\r\n');
+const print = (s = '') => term.write(arabize(String(s), term.cols).replace(/\r?\n/g, '\r\n') + '\r\n');
 const err = (s) => print(C.r + s + C.x);
 
 // ---------- نظام الملفات (بيتخزن في المتصفح) ----------
